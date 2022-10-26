@@ -23,21 +23,22 @@ public class ApiService
     // post actions
     public async Task<Post[]> GetPosts()
     {
-        string url = $"{baseAPI}posts/";
+        string url = $"https://localhost:7174/api/posts/";
+        Console.WriteLine(url);
         return await http.GetFromJsonAsync<Post[]>(url);
     }
 
 
     public async Task<Post> GetPost(int id)
     {
-        string url = $"{baseAPI}posts/{id}/";
+        string url = $"https://localhost:7174/api/posts/{id}";
         return await http.GetFromJsonAsync<Post>(url);
     }
 
 
     public async Task<Post> CreatePost(string title, string text, string user)
     {
-        string url = $"{baseAPI}posts/";
+        string url = $"https://localhost:7174/api/posts/";
 
         HttpResponseMessage msg = await http.PostAsJsonAsync(url, new { title, text, user });
 
@@ -54,7 +55,7 @@ public class ApiService
 
     public async Task<Post> UpvotePost(int id)
     {
-        string url = $"{baseAPI}posts/{id}/upvote/";
+        string url = $"https://localhost:7174/api/posts/{id}/upvote/";
 
         HttpResponseMessage msg = await http.PutAsJsonAsync(url, "");
 
@@ -71,7 +72,7 @@ public class ApiService
 
     public async Task<Post> DownvotePost(int id)
     {
-        string url = $"{baseAPI}posts/{id}/downvote/";
+        string url = $"https://localhost:7174/api/posts/{id}/downvote/";
 
         HttpResponseMessage msg = await http.PutAsJsonAsync(url, "");
 
@@ -89,7 +90,7 @@ public class ApiService
     //comment actions
     public async Task<Comment> CreateComment(string CommentText, string CommentUser, int id)
     {
-        string url = $"{baseAPI}posts/{id}/comments";
+        string url = $"https://localhost:7174/api/posts/{id}/comments";
 
         HttpResponseMessage msg = await http.PostAsJsonAsync(url, new { CommentText, CommentUser, id });
 
