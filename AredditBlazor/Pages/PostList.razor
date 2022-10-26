@@ -8,6 +8,12 @@
 @using Microsoft.Extensions.Configuration
 @inject IConfiguration Configuration
 
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+
 @if (posts == null)
 {
     <p><em>Loading...</em></p>
