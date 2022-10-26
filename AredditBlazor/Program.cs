@@ -9,4 +9,4 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
 await builder.Build().RunAsync();
-// simpel ændring daniel ikke kan finde ud af -- trash cunt
+// simpel ï¿½ndring daniel ikke kan finde ud af -- trash cunt - enig hader ham
