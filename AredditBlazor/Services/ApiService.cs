@@ -105,4 +105,38 @@ public class ApiService
     }
 
 
+    public async Task<Comment> UpvoteComment(int id)
+    {
+        string url = $"https://localhost:7174/api/comments/{id}/upvote/";
+
+        HttpResponseMessage msg = await http.PutAsJsonAsync(url, "");
+
+        string json = msg.Content.ReadAsStringAsync().Result;
+
+        Comment? updatedComment = JsonSerializer.Deserialize<Comment>(json, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true // Ignore case when matching JSON properties to C# properties
+        });
+
+        return updatedComment;
+    }
+
+
+    public async Task<Comment> DownvoteComment(int id)
+    {
+        string url = $"https://localhost:7174/api/comments/{id}/downvote/";
+
+        HttpResponseMessage msg = await http.PutAsJsonAsync(url, "");
+
+        string json = msg.Content.ReadAsStringAsync().Result;
+
+        Comment? updatedComment = JsonSerializer.Deserialize<Comment>(json, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true // Ignore case when matching JSON properties to C# properties
+        });
+
+        return updatedComment;
+    }
+
+
 }
