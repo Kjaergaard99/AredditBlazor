@@ -6,7 +6,8 @@
 <div>
     <br />
     <h3>Write a comment</h3>
-    <input placeholder="Content" type="input" id="content" @bind-value="commentText" />
+    <input placeholder="commentText" type="input" id="commentText" @bind-value="commentText" />
+    <input placeholder="commentUser" type="input" id="commentUser" @bind-value="commentUser" />
     <button id="createPostButton" type="button" @onclick="CreateNewComment">Post comment</button>
 </div>
 
@@ -14,9 +15,11 @@
 
     // PostId is passed in from the parent component. See how in PostItem.razor.
     [Parameter]
-    public int id { get; set; }
+    public long commentId { get; set; }
     private string? commentText;
     private string? commentUser;
+    [Parameter]
+    public int postId { get; set; }
 
     private async void CreateNewComment()
     {
@@ -26,6 +29,6 @@
         }
         // TODO: Provide list of users from dropdown, or maybe just convert
         // from username to UserId
-        await apiService.CreateComment(commentText, commentUser, id);
+        await apiService.CreateComment(commentText, commentUser, postId);
     }
 }

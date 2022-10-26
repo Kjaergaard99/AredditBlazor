@@ -88,11 +88,11 @@ public class ApiService
 
 
     //comment actions
-    public async Task<Comment> CreateComment(string CommentText, string CommentUser, int id)
+    public async Task<Comment> CreateComment(string CommentText, string CommentUser, int PostId)
     {
-        string url = $"https://localhost:7174/api/posts/{id}/comments";
+        string url = $"https://localhost:7174/api/posts/{PostId}/comments";
 
-        HttpResponseMessage msg = await http.PostAsJsonAsync(url, new { CommentText, CommentUser, id });
+        HttpResponseMessage msg = await http.PostAsJsonAsync(url, new { CommentText, CommentUser, PostId });
 
         string json = msg.Content.ReadAsStringAsync().Result;
 
