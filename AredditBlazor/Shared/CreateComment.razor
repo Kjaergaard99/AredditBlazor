@@ -14,8 +14,10 @@
 
     // PostId is passed in from the parent component. See how in PostItem.razor.
     [Parameter]
-    public int PostId { get; set; }
+    public int id { get; set; }
     private string? commentText;
+    private string? commentUser;
+
     private async void CreateNewComment()
     {
         if (commentText == null)
@@ -24,6 +26,6 @@
         }
         // TODO: Provide list of users from dropdown, or maybe just convert
         // from username to UserId
-        await apiService.CreateComment(CommentText, CommentUser, id);
+        await apiService.CreateComment(commentText, commentUser, id);
     }
 }
