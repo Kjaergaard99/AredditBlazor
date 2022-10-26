@@ -31,8 +31,8 @@ else
                 <td>@post.Title</td>
                 <td>@post.Text</td>
                 <td>@post.Votes</td>
-                <td><button @onclick="() => Upvote(post.Id)">Upvote</button></td>
-                <td><button @onclick="() => Downvote(post.Id)">Downvote</button></td>
+                <td><button @onclick="() => Upvote(post.PostId)">Upvote</button></td>
+                <td><button @onclick="() => Downvote(post.PostId)">Downvote</button></td>
             </tr>
         }
     </table>
@@ -49,13 +49,13 @@ else
         posts = await apiService.GetPosts();
     }
 
-    private async void Upvote(int id)
+    private async void Upvote(long id)
     {
-        var updatedPost = await apiService.UpvotePost(id);
+        var updatedPost = await apiService.UpvotePost((int)id);
     }
 
-    private async void Downvote(int id)
+    private async void Downvote(long id)
     {
-        var updatedPost = await apiService.DownvotePost(id)
+        var updatedPost = await apiService.DownvotePost((int)id);
     }
 }
