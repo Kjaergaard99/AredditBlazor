@@ -6,10 +6,10 @@
 <div>
     <br />
     <h3>Create a new post</h3>
-    <input placeholder="Content" type="input" id="content" @bind-value="Post.Title" />
-    <input placeholder="Content" type="input" id="content" @bind-value="Text" />
-    <input placeholder="Content" type="input" id="content" @bind-value="User" />
-    <button id="createPostButton" type="button" @onclick="CreatePost">Create New Post</button>
+    <input placeholder="Post Title" type="input" id="Post Title" @bind-value="title" />
+    <input placeholder="Post Content" type="input" id="Post Content" @bind-value="text" />
+    <input placeholder="User" type="input" id="User" @bind-value="user" />
+    <button id="createPostButton" type="button" @onclick="CreateNewPost">Create New Post</button>
 </div>
 
 @code {
@@ -17,17 +17,12 @@
     // PostId is passed in from the parent component. See how in PostItem.razor.
     [Parameter]
     public int id { get; set; }
-    private string? commentText;
-    private string? commentUser;
+    private string? title;
+    private string? text;
+    private string? user;
 
-    private async void CreateNewComment()
-    {
-        if (commentText == null)
-        {
-            return;
-        }
-        // TODO: Provide list of users from dropdown, or maybe just convert
-        // from username to UserId
-        await apiService.CreateComment(commentText, commentUser, id);
+    private async void CreateNewPost (){
+        await apiService.CreatePost(title,text,user);
     }
+    
 }
