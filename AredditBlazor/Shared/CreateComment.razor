@@ -30,5 +30,6 @@
         // TODO: Provide list of users from dropdown, or maybe just convert
         // from username to UserId
         await apiService.CreateComment(commentText, commentUser, postId);
+        await apiService.GetPost(postId);
     }
 }
