@@ -1,0 +1,11 @@
+﻿.page-background-class {
+    background-image: url(https://media.tenor.com/m58PfSCzVsMAAAAC/aah-screaming.gif);
+    opacity: 90%;
+    height: 80vh;
+    padding: 0;
+    margin-left: -32px;
+    margin-right: -24px;
+    margin-top: -18px;
+    text-align: center;
+    color: red;
+}
