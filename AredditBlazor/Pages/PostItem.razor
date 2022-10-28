@@ -26,12 +26,14 @@
 }
 else
 {
-    <div class="contents">
-        <h4>@Post.Title</h4>
-        <p><strong>User: @Post.User, Votes: @Post.Votes</strong></p>
-        <p>@Post.Title</p>
-        <p>@Post.Text</p>
-    </div>
+<div class="contents">
+    <h4>@Post.Title</h4>
+    <p><strong>User: @Post.User, Votes: @Post.Votes</strong></p>
+    <p>@Post.Title</p>
+    <p>@Post.Text</p>
+    <button @onclick="() => UpvotePost(Post.PostId)">Upvote this post</button>
+    <button @onclick="() => DownvotePost(Post.PostId)">Downvote this post</button>
+</div>
 
     <div class="contents">
         <h4>Comments</h4>
@@ -47,8 +49,8 @@ else
                     <td>@comment.CommentUser</td>
                     <td>@comment.CommentText</td>
                     <td>@comment.CommentVotes</td>
-                    <td><button @onclick="() => Upvote(comment.CommentId)">Upvote</button></td>
-                    <td><button @onclick="() => Downvote(comment.CommentId)">Downvote</button></td>
+                    <td><button @onclick="() => UpvoteComment(comment.CommentId)">Upvote</button></td>
+                    <td><button @onclick="() => DownvoteComment(comment.CommentId)">Downvote</button></td>
                 </tr>
             }
         </table>
@@ -65,16 +67,31 @@ else
     public int PostId { get { return int.Parse(Id); } }
     public Post Post { get; set; }
 
+    public Post[] posts = new Post[1];
+
     protected override async Task OnInitializedAsync()
     {
         Post = await apiService.GetPost(PostId);
+        posts = await apiService.GetPosts();
     }
-    private async void Upvote(long id)
+
+    private async void UpvotePost(long id)
+    {
+        var updatedPost = await apiService.UpvotePost((int)id);
+    }
+
+    private async void DownvotePost(long id)
+    {
+        var updatedPost = await apiService.DownvotePost((int)id);
+    }
+
+
+    private async void UpvoteComment(long id)
     {
         var updatedComment = await apiService.UpvoteComment((int)id);
     }
 
-    private async void Downvote(long id)
+    private async void DownvoteComment(long id)
     {
         var updatedComment = await apiService.DownvoteComment((int)id);
     }
