@@ -21,8 +21,9 @@
     private string? text;
     private string? user;
 
-    private async void CreateNewPost (){
-        await apiService.CreatePost(title,text,user);
+    private async void CreateNewPost()
+    {
+        await apiService.CreatePost(title, text, user);
     }
-    
+
 }

@@ -12,8 +12,6 @@ public class ApiService
     private readonly IConfiguration configuration;
     private readonly string baseAPI = "";
 
-    public event Action RefreshRequired;
-
     public ApiService(HttpClient http, IConfiguration configuration)
     {
         this.http = http;
@@ -140,9 +138,4 @@ public class ApiService
         return updatedComment;
     }
 
-
-    public void CallRequestRefresh()
-    {
-        RefreshRequired?.Invoke();
-    }
 }

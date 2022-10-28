@@ -53,23 +53,18 @@ else
     protected override async Task OnInitializedAsync()
     {
         posts = await apiService.GetPosts();
-        apiService.RefreshRequired += this.RefreshMe;
     }
 
     private async void Upvote(long id)
     {
         var updatedPost = await apiService.UpvotePost((int)id);
+        posts = await apiService.GetPosts();
     }
 
     private async void Downvote(long id)
     {
         var updatedPost = await apiService.DownvotePost((int)id);
+        posts = await apiService.GetPosts();
     }
 
-    private async void RefreshMe()
-    {
-        posts = await apiService.GetPosts();
-        StateHasChanged();
-        Console.WriteLine("Refreshed");
-    }
 }
