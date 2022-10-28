@@ -16,7 +16,8 @@
     <input placeholder="Post Content" type="input" id="Post Content" @bind-value="text" />
     <input placeholder="User" type="input" id="User" @bind-value="user" />
     <button id="createPostButton" type="button" @onclick="CreateNewPost">Create New Post</button>
-    <label class="postCreatedBesked" for="postCreatedBesked">Your recent post: @meddelelse</label>
+    <br />
+    <label class="postCreatedBesked" for="postCreatedBesked">Your recent post:</label>
 </div>
 
 
@@ -42,8 +43,7 @@
     private string? title;
     private string? text;
     private string? user;
-    private string meddelelse = "";
-
+    
     private string newTitle = "";
     private string newText = "";
 

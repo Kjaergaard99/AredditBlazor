@@ -58,13 +58,15 @@ else
     private async void Upvote(long id)
     {
         var updatedPost = await apiService.UpvotePost((int)id);
-        posts = await apiService.GetPosts();
+        // posts = await apiService.GetPosts();
+        // opdaterer listen kontinuerligt, men vi kunne ikke fikse en tilhørende bug
     }
 
     private async void Downvote(long id)
     {
         var updatedPost = await apiService.DownvotePost((int)id);
-        posts = await apiService.GetPosts();
+        // posts = await apiService.GetPosts();
+        // opdaterer listen kontinuerligt, men vi kunne ikke fikse en tilhørende bug
     }
 
 }
