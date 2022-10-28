@@ -6,8 +6,10 @@
 <div>
     <br />
     <h3>Create a new post</h3>
-    <input placeholder="Content" type="input" id="content" @bind-value="commentText" />
-    <button id="createPostButton" type="button" @onclick="CreateNewComment">Post comment</button>
+    <input placeholder="Content" type="input" id="content" @bind-value="Post.Title" />
+    <input placeholder="Content" type="input" id="content" @bind-value="Text" />
+    <input placeholder="Content" type="input" id="content" @bind-value="User" />
+    <button id="createPostButton" type="button" @onclick="CreatePost">Create New Post</button>
 </div>
 
 @code {
