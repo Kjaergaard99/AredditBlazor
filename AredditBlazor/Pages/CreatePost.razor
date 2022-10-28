@@ -3,6 +3,12 @@
 @page "/createpost"
 @inject ApiService apiService
 
+    <style>
+        table, th, td {
+            border: 2px solid black;
+        }
+    </style>
+
 <div>
     <br />
     <h3>Create a new post</h3>
@@ -10,20 +16,44 @@
     <input placeholder="Post Content" type="input" id="Post Content" @bind-value="text" />
     <input placeholder="User" type="input" id="User" @bind-value="user" />
     <button id="createPostButton" type="button" @onclick="CreateNewPost">Create New Post</button>
+    <label class="postCreatedBesked" for="postCreatedBesked">Your recent post: @meddelelse</label>
 </div>
+
+
+<div class="newPost">
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Text</th>
+        </tr>
+
+        <tr>
+            <td>@newTitle</td>
+            <td>@newText</td>
+        </tr>
+    </table>
+</div>
+
 
 @code {
 
-    // PostId is passed in from the parent component. See how in PostItem.razor.
     [Parameter]
     public int id { get; set; }
     private string? title;
     private string? text;
     private string? user;
+    private string meddelelse = "";
 
-    private async void CreateNewPost()
+    private string newTitle = "";
+    private string newText = "";
+
+    private async Task CreateNewPost()
     {
-        await apiService.CreatePost(title, text, user);
+
+        Post newPost = await apiService.CreatePost(title, text, user);
+        Console.WriteLine($"{title}, {text}, {user}");
+        newTitle = title;
+        newText = text;
     }
 
 }
