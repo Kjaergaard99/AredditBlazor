@@ -12,6 +12,18 @@
         table, th, td {
             border: 2px solid black;
         }
+
+        .info {
+            text-decoration: underline;
+        }
+
+        .upvote {
+            background-color: green;
+        }
+
+        .downvote {
+            background-color: red;
+        }
     </style>
 
 @if (posts == null)
@@ -40,8 +52,8 @@ else
                 <td>@post.User</td>
                 <td>@post.Date</td>
                 <td>@post.Votes</td>
-                <td><button @onclick="() => Upvote(post.PostId)">Upvote</button></td>
-                <td><button @onclick="() => Downvote(post.PostId)">Downvote</button></td>
+                <td><button class="upvote" @onclick="() => Upvote(post.PostId)">Upvote</button></td>
+                <td><button class="downvote" @onclick="() => Downvote(post.PostId)">Downvote</button></td>
             </tr>
         }
     </table>
