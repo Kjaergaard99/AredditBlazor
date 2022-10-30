@@ -18,6 +18,18 @@
         padding: 10px;
         margin-top: 20px;
     }
+
+    .info {
+        text-decoration: underline;
+    }
+
+    .upvote {
+        background-color: green;
+    }
+
+    .downvote {
+        background-color: red;
+    }
 </style>
 
 @if (Post == null)
@@ -26,14 +38,15 @@
 }
 else
 {
-<div class="contents">
-    <h4>@Post.Title</h4>
-    <p><strong>User: @Post.User, Votes: @Post.Votes</strong></p>
-    <p>@Post.Title</p>
-    <p>@Post.Text</p>
-    <button @onclick="() => UpvotePost(Post.PostId)">Upvote this post</button>
-    <button @onclick="() => DownvotePost(Post.PostId)">Downvote this post</button>
-</div>
+    <div class="contents">
+        <h4>@Post.Title</h4>
+        <p class="info">User: @Post.User</p>
+        <p>@Post.Text</p>
+        <p>@Post.Date</p>
+        <strong>Votes: @Post.Votes</strong>
+        <button class="upvote" @onclick="() => UpvotePost(Post.PostId)">Upvote this post</button>
+        <button class="downvote" @onclick="() => DownvotePost(Post.PostId)">Downvote this post</button>
+    </div>
 
     <div class="contents">
         <h4>Comments</h4>
@@ -41,6 +54,7 @@ else
             <tr>
                 <th>User</th>
                 <th>Comment</th>
+                <th>Date</th>
                 <th colspan="3">Votes</th>
             </tr>
             @foreach (var comment in Post.Comments)
@@ -48,9 +62,10 @@ else
                 <tr>
                     <td>@comment.CommentUser</td>
                     <td>@comment.CommentText</td>
-                    <td>@comment.CommentVotes</td>
-                    <td><button @onclick="() => UpvoteComment(comment.CommentId)">Upvote</button></td>
-                    <td><button @onclick="() => DownvoteComment(comment.CommentId)">Downvote</button></td>
+                    <td>@comment.CommentDate</td>
+                    <td><strong>@comment.CommentVotes</strong></td>
+                    <td><button class="upvote" @onclick="() => UpvoteComment(comment.CommentId)">Upvote</button></td>
+                    <td><button class="downvote" @onclick="() => DownvoteComment(comment.CommentId)">Downvote</button></td>
                 </tr>
             }
         </table>
